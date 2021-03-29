@@ -19,7 +19,6 @@ namespace pdf_form_fields
                 foreach (PdfFormFieldFacade field in fields)
                 {
                     ChangeFormFieldColor(field);
-                    field.RebuildAppearance();
                 }
 
                 //Obtain button form field parameters:
