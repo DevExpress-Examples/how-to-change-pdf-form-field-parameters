@@ -5,7 +5,7 @@
     <RootNamespace></RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="DevExpress.Document.Processor" Version="21.1.4" />
+    <PackageReference Include="DevExpress.Document.Processor" Version="21.1.5" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Documents\FormDemo.pdf">
