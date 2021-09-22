@@ -64,10 +64,7 @@ namespace pdf_form_fields
                 nationalityField.Value = nationalityField.Items[68].Value;
 
                 //Disable user input:
-                nationalityField.Editable = false;
-                
-                //Disable multiple selection:
-                nationalityField.MultiSelect = false;
+                nationalityField.Editable = false;                
 
                 //Sort list items alphabetically:
                 nationalityField.Sorted = true;                
