@@ -61,9 +61,6 @@ Namespace pdf_form_fields
 				'Disable user input:
 				nationalityField.Editable = False
 
-				'Disable multiple selection:
-				nationalityField.MultiSelect = False
-
 				'Sort list items alphabetically:
 				nationalityField.Sorted = True
 
