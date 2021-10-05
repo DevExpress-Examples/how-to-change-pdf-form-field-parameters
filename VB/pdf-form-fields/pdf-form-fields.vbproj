@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace></RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="DevExpress.Document.Processor" Version="21.1.5" />
+    <PackageReference Include="DevExpress.Document.Processor" Version="21.1.6" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Documents\FormDemo.pdf">
