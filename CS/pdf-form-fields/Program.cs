@@ -1,10 +1,15 @@
 ﻿using DevExpress.Pdf;
+using System;
 using System.Diagnostics;
 
 namespace pdf_form_fields
 {
     class Program
     {
+        static PdfRadioGroupFormFieldFacade genderField;
+        static PdfTextFormFieldFacade visaField;
+        static PdfTextFormFieldFacade addressField;
+        static PdfComboBoxFormFieldFacade nationalityField;
         static void Main(string[] args)
         {
             using (PdfDocumentProcessor pdfDocumentProcessor = new PdfDocumentProcessor())
@@ -13,6 +18,9 @@ namespace pdf_form_fields
 
                 PdfDocumentFacade documentFacade = pdfDocumentProcessor.DocumentFacade;
                 PdfAcroFormFacade acroForm = documentFacade.AcroForm;
+                
+                // Specify the form field values.
+                FillFormFields(acroForm);
 
                 //Change all form fields' color settings:
                 var fields = acroForm.GetFields();
@@ -31,48 +39,67 @@ namespace pdf_form_fields
                 buttonWidget.IconOptions.ScaleCondition = PdfIconScalingCircumstances.BiggerThanAnnotationRectangle;
                 buttonWidget.TextPosition = PdfWidgetAnnotationTextPosition.NoCaption;
 
-                //Obtain the text form field properties
-                
-                PdfTextFormFieldFacade visaField = acroForm.GetTextFormField("VisaNo");
+                ////Obtain the text form field properties           
+                //PdfTextFormFieldFacade visaField = acroForm.GetTextFormField("VisaNo");
 
-                //Divide field text into equally spaced positions:
+                //Divide the "Visa No" field text into equally spaced positions:
                 visaField.InputType = PdfTextFieldInputType.Comb;
                 visaField.Multiline = false;
                 
                 //Limit the number of inserted characters:
                 visaField.MaxLength = 8;
 
-                //Enable multiline text in the text field:
-                PdfTextFormFieldFacade addressField = acroForm.GetTextFormField("Address");                
+                //PdfTextFormFieldFacade addressField = acroForm.GetTextFormField("Address");
+                
+                // Enable multiline text in the "Address" text field.
                 addressField.Multiline = true;
 
                 addressField.Scrollable = true;
                 addressField.SpellCheck = false;
 
-                //Set the radio group value:
-                PdfRadioGroupFormFieldFacade genderField = acroForm.GetRadioGroupFormField("Gender");
-                genderField.Value = genderField.Field.Items[2].Value;
+                ////Set the radio group value:
+                //PdfRadioGroupFormFieldFacade genderField = acroForm.GetRadioGroupFormField("Gender");
+                //genderField.Value = genderField.Field.Items[2].Value;
                 
-                //Change marker style for all radio buttons:
+                // Change marker style for all radio buttons:
                 foreach (PdfRadioButtonWidgetFacade widget in genderField.Widgets)
                 {
                     widget.ButtonStyle = PdfAcroFormButtonStyle.Square;
                 }
 
-                //Set combo box field value:
-                PdfComboBoxFormFieldFacade nationalityField = acroForm.GetComboBoxFormField("Nationality");
-                nationalityField.Value = nationalityField.Items[68].Value;
+                ////Set combo box field value:
+                //PdfComboBoxFormFieldFacade nationalityField = acroForm.GetComboBoxFormField("Nationality");
+                //nationalityField.Value = nationalityField.Items[68].Value;
 
-                //Disable user input:
+                // Disable user input for the "Nationality" field:
                 nationalityField.Editable = false;                
 
-                //Sort list items alphabetically:
+                // Sort list items alphabetically:
                 nationalityField.Sorted = true;                
 
 
                 pdfDocumentProcessor.SaveDocument("FormDemo_new.pdf");
                 Process.Start(new ProcessStartInfo("FormDemo_new.pdf") { UseShellExecute = true });
             }
+        }
+
+        private static void FillFormFields(PdfAcroFormFacade acroForm)
+        {
+            // Specify the "Visa No" field.
+            visaField = acroForm.GetTextFormField("VisaNo");
+            visaField.Value = "73203393";
+
+            // Specify the "Address" field.
+            addressField = acroForm.GetTextFormField("Address");
+            addressField.Value = "98033, 722 Moss Bay Blvd., Kirkland, WA, USA";
+
+            // Specify the "Gender" field.
+            genderField = acroForm.GetRadioGroupFormField("Gender");
+            genderField.Value = genderField.Field.Items[2].Value;
+
+            // Specify the "Nationality" field.
+            nationalityField = acroForm.GetComboBoxFormField("Nationality");
+            nationalityField.Value = nationalityField.Items[68].Value;
         }
 
         private static void ChangeFormFieldColor(PdfFormFieldFacade field)
