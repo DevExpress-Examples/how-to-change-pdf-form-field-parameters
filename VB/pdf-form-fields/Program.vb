@@ -13,7 +13,7 @@ Namespace pdf_form_fields
                 'Change all form fields' color settings:
                 Dim fields = acroForm.GetFields()
                 For Each field As PdfFormFieldFacade In fields
-                    Program.ChangeFormFieldColor(field)
+                    ChangeFormFieldColor(field)
                 Next
 
                 'Obtain button form field parameters:
@@ -54,7 +54,7 @@ Namespace pdf_form_fields
                 'Sort list items alphabetically:
                 nationalityField.Sorted = True
                 pdfDocumentProcessor.SaveDocument("FormDemo_new.pdf")
-                Process.Start(New ProcessStartInfo("FormDemo_new.pdf") With {.UseShellExecute = True})
+                Call Process.Start(New ProcessStartInfo("FormDemo_new.pdf") With {.UseShellExecute = True})
             End Using
         End Sub
 
@@ -67,7 +67,7 @@ Namespace pdf_form_fields
                 pdfWidget.BorderColor = New PdfRGBColor(0.47, 0.44, 0.67)
                 pdfWidget.FontColor = New PdfRGBColor(0.34, 0.25, 0.36)
                 'Change border style for text form fields:
-                If field.Type Is PdfFormFieldType.Text Then
+                If field.Type = PdfFormFieldType.Text Then
                     pdfWidget.BorderStyle = PdfBorderStyle.Underline
                 End If
             Next
