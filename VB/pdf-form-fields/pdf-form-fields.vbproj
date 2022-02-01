@@ -3,10 +3,11 @@
     <OptionInfer>On</OptionInfer>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="DevExpress.Document.Processor" Version="21.1.6" />
+    <PackageReference Include="DevExpress.Document.Processor" Version="21.1.7" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Documents\FormDemo.pdf">
